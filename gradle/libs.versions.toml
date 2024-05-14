@@ -12,6 +12,7 @@ constraintlayout = "2.1.4"
 hilt = "2.51.1"
 retrofit = "2.11.0"
 room = "2.6.1"
+coil = "2.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room"}
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
+coil = {group = "io.coil-kt", name = "coil", version.ref = "coil"}
 
 
 [plugins]
