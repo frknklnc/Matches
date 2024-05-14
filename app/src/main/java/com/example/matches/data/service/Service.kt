@@ -1,6 +1,6 @@
 package com.example.matches.data.service
 
-import com.example.matches.data.model.MatchesResponse
+import com.example.matches.data.model.remote.MatchesResponse
 import retrofit2.http.GET
 
 interface Service {

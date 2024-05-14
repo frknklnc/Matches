@@ -1,4 +1,4 @@
-package com.example.matches.data.model
+package com.example.matches.data.model.remote
 
 
 import com.google.gson.annotations.SerializedName
@@ -21,7 +21,7 @@ data class MatchesResponse(
         @SerializedName("ht")
         val ht: Ht,
         @SerializedName("i")
-        val i: Int,
+        val matchId: Int,
         @SerializedName("img")
         val img: İmg,
         @SerializedName("pe")

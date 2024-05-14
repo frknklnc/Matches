@@ -39,10 +39,18 @@ android {
 
 dependencies {
 
+    //Depencency Injection
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+
+    //Remote
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+
+    //Locale
+    implementation(libs.room)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
