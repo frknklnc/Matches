@@ -11,7 +11,7 @@ data class MatchesResponse(
 ) {
     data class Data(
         @SerializedName("at")
-        val at: At,
+        val at: AwayTeam,
         @SerializedName("br")
         val br: Br,
         @SerializedName("bri")
@@ -19,7 +19,7 @@ data class MatchesResponse(
         @SerializedName("d")
         val d: Long,
         @SerializedName("ht")
-        val ht: Ht,
+        val ht: HomeTeam,
         @SerializedName("i")
         val matchId: Int,
         @SerializedName("img")
@@ -35,15 +35,15 @@ data class MatchesResponse(
         @SerializedName("str")
         val str: Boolean,
         @SerializedName("to")
-        val to: To,
+        val leagueInformation: LeagueInformation,
         @SerializedName("v")
         val v: String
     ) {
-        data class At(
+        data class AwayTeam(
             @SerializedName("i")
             val i: Int,
             @SerializedName("n")
-            val n: String,
+            val name: String,
             @SerializedName("p")
             val p: Int,
             @SerializedName("rc")
@@ -57,11 +57,11 @@ data class MatchesResponse(
             val id: Int
         )
 
-        data class Ht(
+        data class HomeTeam(
             @SerializedName("i")
             val i: Int,
             @SerializedName("n")
-            val n: String,
+            val name: String,
             @SerializedName("p")
             val p: Int,
             @SerializedName("rc")
@@ -84,46 +84,46 @@ data class MatchesResponse(
 
         data class Sc(
             @SerializedName("abbr")
-            val abbr: String,
+            val matchStatus: String,
             @SerializedName("at")
-            val at: At,
+            val awayTeam: AwayTeam,
             @SerializedName("ht")
-            val ht: Ht,
+            val homeTeam: HomeTeam,
             @SerializedName("min")
             val min: Int,
             @SerializedName("st")
             val st: Int
         ) {
-            data class At(
+            data class AwayTeam(
                 @SerializedName("c")
-                val c: Int,
+                val score: Int,
                 @SerializedName("ht")
-                val ht: Int,
+                val halfScore: Int,
                 @SerializedName("r")
                 val r: Int
             )
 
-            data class Ht(
+            data class HomeTeam(
                 @SerializedName("c")
-                val c: Int,
+                val score: Int,
                 @SerializedName("ht")
-                val ht: Int,
+                val halfScore: Int,
                 @SerializedName("r")
                 val r: Int
             )
         }
 
-        data class To(
+        data class LeagueInformation(
             @SerializedName("flag")
             val flag: String,
             @SerializedName("i")
-            val i: Int,
+            val id: Int,
             @SerializedName("n")
-            val n: String,
+            val name: String,
             @SerializedName("p")
-            val p: Int,
+            val point: Int,
             @SerializedName("sn")
-            val sn: String
+            val shortName: String
         )
     }
 }
