@@ -41,6 +41,8 @@ dependencies {
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
