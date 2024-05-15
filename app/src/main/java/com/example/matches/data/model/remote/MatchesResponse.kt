@@ -5,25 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class MatchesResponse(
     @SerializedName("data")
-    val data: List<Data>,
+    val data: List<MatchData>,
     @SerializedName("success")
     val success: Boolean
 ) {
-    data class Data(
+    data class MatchData(
         @SerializedName("at")
-        val at: AwayTeam,
+        val awayTeam: AwayTeam,
         @SerializedName("br")
         val br: Br,
         @SerializedName("bri")
         val bri: Int,
         @SerializedName("d")
-        val d: Long,
+        val matchDate: Long,
         @SerializedName("ht")
-        val ht: HomeTeam,
+        val homeTeam: HomeTeam,
         @SerializedName("i")
         val matchId: Int,
         @SerializedName("img")
-        val img: İmg,
+        val img: Img,
         @SerializedName("pe")
         val pe: Pe,
         @SerializedName("sc")
@@ -70,7 +70,7 @@ data class MatchesResponse(
             val sn: String
         )
 
-        data class İmg(
+        data class Img(
             @SerializedName("id")
             val id: Int
         )
@@ -86,9 +86,9 @@ data class MatchesResponse(
             @SerializedName("abbr")
             val matchStatus: String,
             @SerializedName("at")
-            val awayTeam: AwayTeam,
+            val awayTeam: AwayTeam?,
             @SerializedName("ht")
-            val homeTeam: HomeTeam,
+            val homeTeam: HomeTeam?,
             @SerializedName("min")
             val min: Int,
             @SerializedName("st")
@@ -98,7 +98,7 @@ data class MatchesResponse(
                 @SerializedName("c")
                 val score: Int,
                 @SerializedName("ht")
-                val halfScore: Int,
+                val halfScore: Int?,
                 @SerializedName("r")
                 val r: Int
             )
@@ -107,7 +107,7 @@ data class MatchesResponse(
                 @SerializedName("c")
                 val score: Int,
                 @SerializedName("ht")
-                val halfScore: Int,
+                val halfScore: Int?,
                 @SerializedName("r")
                 val r: Int
             )

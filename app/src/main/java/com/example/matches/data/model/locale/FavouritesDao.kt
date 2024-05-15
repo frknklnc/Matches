@@ -10,8 +10,8 @@ interface FavouritesDao {
      @Insert
      suspend fun insertMatch(vararg entity: FavouritesEntities)
 
-     @Query("SELECT * FROM favourites WHERE matchId = :id")
-     suspend fun getMatches(id: Int): List<FavouritesEntities>
+     @Query("SELECT * FROM favourites")
+     suspend fun getMatches(): List<FavouritesEntities>
 
      @Delete
      suspend fun deleteMatch(entity: FavouritesEntities)

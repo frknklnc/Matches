@@ -55,6 +55,12 @@ dependencies {
     //Image
     implementation(libs.coil)
 
+    //ViewmodelKtx
+    implementation(libs.viewmodel.ktx)
+
+    //FragmentKtx
+    implementation(libs.fragment.ktx)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
