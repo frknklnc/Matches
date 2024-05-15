@@ -2,6 +2,7 @@ package com.example.matches.data.repository
 
 import com.example.matches.base.data.repository.BaseRepository
 import com.example.matches.data.model.locale.FavouritesDao
+import com.example.matches.data.model.locale.FavouritesEntities
 import com.example.matches.data.model.remote.MatchModel
 import com.example.matches.data.service.Service
 import kotlinx.coroutines.flow.Flow
@@ -37,6 +38,19 @@ class MatchesRepository @Inject constructor(
             val groupedMatches = matches.groupBy { it.leagueName }
 
             groupedMatches
+        }
+    }
+
+    fun addFavourites(id: Int): Flow<Unit> {
+        return fetch {
+            val entity = FavouritesEntities(mathcId = id)
+            localeService.insertMatch(entity)
+        }
+    }
+
+    fun deleteFavourites(id: Int): Flow<Unit> {
+        return fetch {
+            localeService.deleteMatch(id)
         }
     }
 }
