@@ -3,6 +3,7 @@ package com.example.matches.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.matches.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,9 +20,20 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel.matchesLiveData.observe(this) {
-            adapter = LeagueAdapter(it)
-            binding.recyclerView.adapter = adapter
+        adapter = LeagueAdapter(emptyMap()) { match ->
+            if (match.isFavourite){
+                viewModel.removeFavourite(match.matchId)
+            }else{
+                viewModel.addFavourite(match.matchId)
+            }
         }
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        viewModel.matchesLiveData.observe(this) {
+            adapter.updateLeagues(it)
+        }
+        viewModel.getMatches()
     }
 }

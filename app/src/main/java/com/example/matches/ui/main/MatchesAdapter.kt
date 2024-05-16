@@ -35,6 +35,12 @@ class MatchesAdapter(private var matches: List<MatchModel>) :
                 awayTeamTextView.text = match.awayTeamName
                 scoreTextView.text = "${match.homeTeamScore} - ${match.awayTeamScore}"
                 halfScoreTextView.text = "${match.homeTeamHalfScore} - ${match.awayTeamHalfScore}"
+
+                favouriteImageView.isActivated = match.isFavourite
+
+                favouriteImageView.setOnClickListener {
+                    onFavouriteClick(match)
+                }
             }
         }
     }

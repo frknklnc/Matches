@@ -22,6 +22,7 @@ class MatchesRepository @Inject constructor(
                 .map { matchData ->
                     val isFavourite = favourites.any { it.mathcId == matchData.matchId }
                     MatchModel(
+                        matchId = matchData.matchId,
                         homeTeamName = matchData.homeTeam.name,
                         awayTeamName = matchData.awayTeam.name,
                         matchStatus = matchData.sc.matchStatus,

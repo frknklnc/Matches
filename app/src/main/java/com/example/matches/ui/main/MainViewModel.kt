@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.matches.data.domain.MatchesUseCase
 import com.example.matches.data.model.remote.MatchModel
+import com.example.matches.data.repository.MatchesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val matchesUseCase: MatchesUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: MatchesRepository,private val matchesUseCase: MatchesUseCase) : ViewModel() {
 
     private val _matches = MutableLiveData<Map<String, List<MatchModel>>>()
     val matchesLiveData: LiveData<Map<String, List<MatchModel>>> = _matches
@@ -31,5 +34,19 @@ class MainViewModel @Inject constructor(private val matchesUseCase: MatchesUseCa
             //TODO error handling
             }
             .launchIn(viewModelScope)
+    }
+
+    fun addFavourite(matchId: Int){
+       viewModelScope.launch {
+           repository.addFavourites(matchId).collect()
+           getMatches()
+       }
+    }
+
+    fun removeFavourite(matchId: Int) {
+        viewModelScope.launch {
+            repository.deleteFavourites(matchId).collect()
+            getMatches()
+        }
     }
 }

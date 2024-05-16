@@ -2,12 +2,16 @@ package com.example.matches.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.matches.data.model.remote.MatchModel
 import com.example.matches.databinding.LeagueLayoutBinding
 
-class LeagueAdapter(private var leagues: Map<String, List<MatchModel>>) :
+class LeagueAdapter(
+    private var leagues: Map<String, List<MatchModel>>,
+    private val onFavouriteClick: (MatchModel) -> Unit
+) :
     RecyclerView.Adapter<LeagueAdapter.ItemViewHolder>() {
     fun updateLeagues(newLeagues: Map<String, List<MatchModel>>) {
         leagues = newLeagues
@@ -27,7 +31,7 @@ class LeagueAdapter(private var leagues: Map<String, List<MatchModel>>) :
 
     override fun getItemCount(): Int = leagues.size
 
-    class ItemViewHolder(private val binding: LeagueLayoutBinding) :
+    inner class ItemViewHolder(private val binding: LeagueLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(league: String, matches: List<MatchModel>) {
             with(binding) {

@@ -1,6 +1,7 @@
 package com.example.matches.data.model.remote
 
 data class MatchModel(
+    val matchId: Int,
     val homeTeamName: String,
     val awayTeamName: String,
     val matchStatus: String,
