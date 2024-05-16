@@ -30,9 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.itemAnimator = null
+        binding.swipe.setOnRefreshListener {
+            viewModel.getMatches()
+        }
 
         viewModel.matchesLiveData.observe(this) {
             adapter.updateLeagues(it)
+            binding.swipe.isRefreshing = false
         }
     }
 }

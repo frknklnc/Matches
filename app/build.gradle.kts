@@ -66,6 +66,9 @@ dependencies {
     //FragmentKtx
     implementation(libs.fragment.ktx)
 
+    //SwipeLayout
+    implementation(libs.swipe.layout)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
