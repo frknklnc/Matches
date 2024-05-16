@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.itemAnimator = null
 
         viewModel.matchesLiveData.observe(this) {
             adapter.updateLeagues(it)
         }
-        viewModel.getMatches()
     }
 }

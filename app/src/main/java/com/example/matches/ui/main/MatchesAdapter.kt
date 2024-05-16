@@ -2,16 +2,16 @@ package com.example.matches.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.matches.data.model.remote.MatchModel
 import com.example.matches.databinding.ItemLayoutBinding
 
-class MatchesAdapter(private var matches: List<MatchModel>) :
-    RecyclerView.Adapter<MatchesAdapter.ItemViewHolder>() {
-    fun updateMatches(newMatches: List<MatchModel>) {
-        matches = newMatches
-        notifyDataSetChanged() //TODO: dif util eklenecek
-    }
+class MatchesAdapter(
+    private val onFavouriteClick: (MatchModel) -> Unit
+) :
+    ListAdapter<MatchModel, MatchesAdapter.ItemViewHolder>(ItemDifUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,13 +20,10 @@ class MatchesAdapter(private var matches: List<MatchModel>) :
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(matches[position])
-
+        holder.bind(currentList[position])
     }
 
-    override fun getItemCount(): Int = matches.size
-
-    class ItemViewHolder(private val binding: ItemLayoutBinding) :
+    inner class ItemViewHolder(private val binding: ItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(match: MatchModel) {
             with(binding) {
@@ -42,6 +39,16 @@ class MatchesAdapter(private var matches: List<MatchModel>) :
                     onFavouriteClick(match)
                 }
             }
+        }
+    }
+
+    class ItemDifUtil : DiffUtil.ItemCallback<MatchModel>() {
+        override fun areItemsTheSame(oldItem: MatchModel, newItem: MatchModel): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: MatchModel, newItem: MatchModel): Boolean {
+            return  oldItem.hashCode() == newItem.hashCode()
         }
     }
 }

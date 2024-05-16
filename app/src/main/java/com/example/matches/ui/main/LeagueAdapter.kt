@@ -2,7 +2,7 @@ package com.example.matches.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.matches.data.model.remote.MatchModel
@@ -14,8 +14,10 @@ class LeagueAdapter(
 ) :
     RecyclerView.Adapter<LeagueAdapter.ItemViewHolder>() {
     fun updateLeagues(newLeagues: Map<String, List<MatchModel>>) {
+        val diffUtil = ItemDiffUtil(oldItems = leagues, newItems = newLeagues)
+        val result = DiffUtil.calculateDiff(diffUtil)
         leagues = newLeagues
-        notifyDataSetChanged() //TODO: dif util eklenecek
+        result.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -37,9 +39,37 @@ class LeagueAdapter(
             with(binding) {
                 headerText.text = league
                 flagImage.load(matches.firstOrNull()?.leagueFlag)
-                val adapter = MatchesAdapter(matches)
+                val adapter = MatchesAdapter(onFavouriteClick)
+                adapter.submitList(matches)
                 matchesList.adapter = adapter
             }
+        }
+    }
+
+    class ItemDiffUtil(
+        val oldItems: Map<String, List<MatchModel>>,
+        val newItems: Map<String, List<MatchModel>>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int {
+            return oldItems.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newItems.size
+        }
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldItems.entries.elementAt(oldItemPosition)
+            val newItem = newItems.entries.elementAt(newItemPosition)
+
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldItems.entries.elementAt(oldItemPosition)
+            val newItem = newItems.entries.elementAt(newItemPosition)
+
+            return oldItem.value.hashCode() == newItem.value.hashCode()
         }
     }
 }
