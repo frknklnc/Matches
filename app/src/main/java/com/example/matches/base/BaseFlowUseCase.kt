@@ -1,11 +1,11 @@
-package com.example.matches.base.data.usecase
+package com.example.matches.base
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 
-abstract class BaseUseCase<in P, R>(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+abstract class BaseFlowUseCase<in P, R>(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     protected abstract fun build(params: P): Flow<R>
 

@@ -1,11 +1,11 @@
-package com.example.matches.ui.main
+package com.example.matches.presantation.matchlist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.matches.data.model.remote.MatchModel
+import com.example.matches.domain.model.MatchModel
 import com.example.matches.databinding.LeagueLayoutBinding
 
 class LeagueAdapter(

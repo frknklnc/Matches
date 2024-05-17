@@ -1,17 +1,17 @@
-package com.example.matches.data.model.remote
+package com.example.matches.data.remote.model
 
 
 import com.google.gson.annotations.SerializedName
 
-data class MatchesResponse(
+data class MatchesDto(
     @SerializedName("data")
-    val data: List<MatchData>,
+    val data: List<MatchDto>,
     @SerializedName("success")
     val success: Boolean
 ) {
-    data class MatchData(
+    data class MatchDto(
         @SerializedName("at")
-        val awayTeam: AwayTeam,
+        val awayTeamDto: AwayTeamDto,
         @SerializedName("br")
         val br: Br,
         @SerializedName("bri")
@@ -19,7 +19,7 @@ data class MatchesResponse(
         @SerializedName("d")
         val matchDate: Long,
         @SerializedName("ht")
-        val homeTeam: HomeTeam,
+        val homeTeamDto: HomeTeamDto,
         @SerializedName("i")
         val matchId: Int,
         @SerializedName("img")
@@ -27,7 +27,7 @@ data class MatchesResponse(
         @SerializedName("pe")
         val pe: Pe,
         @SerializedName("sc")
-        val sc: Sc,
+        val scoreInformationDto: ScoreInformationDto,
         @SerializedName("sgi")
         val sgi: Int,
         @SerializedName("st")
@@ -35,11 +35,11 @@ data class MatchesResponse(
         @SerializedName("str")
         val str: Boolean,
         @SerializedName("to")
-        val leagueInformation: LeagueInformation,
+        val leagueInformationDto: LeagueInformationDto,
         @SerializedName("v")
         val v: String
     ) {
-        data class AwayTeam(
+        data class AwayTeamDto(
             @SerializedName("i")
             val i: Int,
             @SerializedName("n")
@@ -57,7 +57,7 @@ data class MatchesResponse(
             val id: Int
         )
 
-        data class HomeTeam(
+        data class HomeTeamDto(
             @SerializedName("i")
             val i: Int,
             @SerializedName("n")
@@ -82,19 +82,19 @@ data class MatchesResponse(
             val si: String
         )
 
-        data class Sc(
+        data class ScoreInformationDto(
             @SerializedName("abbr")
             val matchStatus: String,
             @SerializedName("at")
-            val awayTeam: AwayTeam?,
+            val awayTeamScoreDto: AwayTeamScoreDto?,
             @SerializedName("ht")
-            val homeTeam: HomeTeam?,
+            val homeTeamScoreDto: HomeTeamScoreDto?,
             @SerializedName("min")
             val min: Int,
             @SerializedName("st")
             val st: Int
         ) {
-            data class AwayTeam(
+            data class AwayTeamScoreDto(
                 @SerializedName("c")
                 val score: Int,
                 @SerializedName("ht")
@@ -103,7 +103,7 @@ data class MatchesResponse(
                 val r: Int
             )
 
-            data class HomeTeam(
+            data class HomeTeamScoreDto(
                 @SerializedName("c")
                 val score: Int,
                 @SerializedName("ht")
@@ -113,7 +113,7 @@ data class MatchesResponse(
             )
         }
 
-        data class LeagueInformation(
+        data class LeagueInformationDto(
             @SerializedName("flag")
             val flag: String,
             @SerializedName("i")

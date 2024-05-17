@@ -1,4 +1,4 @@
-package com.example.matches
+package com.example.matches.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

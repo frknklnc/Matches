@@ -1,4 +1,4 @@
-package com.example.matches.data.model.remote
+package com.example.matches.domain.model
 
 data class MatchModel(
     val matchId: Int,

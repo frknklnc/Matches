@@ -1,11 +1,12 @@
-package com.example.matches.ui.main
+package com.example.matches.presantation.matchlist.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.matches.data.model.remote.MatchModel
+import com.example.matches.domain.model.MatchModel
 import com.example.matches.databinding.ItemLayoutBinding
 
 class MatchesAdapter(
@@ -25,6 +26,7 @@ class MatchesAdapter(
 
     inner class ItemViewHolder(private val binding: ItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(match: MatchModel) {
             with(binding) {
                 matchStatusTextView.text = match.matchStatus

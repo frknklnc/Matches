@@ -1,6 +1,6 @@
 package com.example.matches.di
 
-import com.example.matches.data.service.Service
+import com.example.matches.data.remote.api.MatchesService
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -40,7 +40,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit): Service {
-        return retrofit.create(Service::class.java)
+    fun provideService(retrofit: Retrofit): MatchesService {
+        return retrofit.create(MatchesService::class.java)
     }
 }

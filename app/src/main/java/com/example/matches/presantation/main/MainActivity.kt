@@ -1,10 +1,10 @@
-package com.example.matches.ui.main
+package com.example.matches.presantation.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.matches.databinding.ActivityMainBinding
+import com.example.matches.presantation.matchlist.adapter.LeagueAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
