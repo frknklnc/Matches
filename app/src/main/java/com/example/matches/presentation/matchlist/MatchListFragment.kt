@@ -6,11 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.matches.databinding.FragmentMatchListBinding
 import com.example.matches.domain.model.Match
 import com.example.matches.presentation.matchlist.adapter.LeagueAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MatchListFragment : Fragment() {
@@ -51,8 +56,13 @@ class MatchListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.itemAnimator = null
 
-        viewModel.matchesLiveData.observe(viewLifecycleOwner) {
-            adapter.updateLeagues(it)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.matchesData.collectLatest {
+                    adapter.updateLeagues(it)
+                }
+            }
         }
     }
 

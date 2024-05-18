@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MatchesRepository {
 
-    fun getMatches(): Flow<Map<String, List<Match>>>
+    val matchesStream: Flow<Map<String, List<Match>>>
 
     suspend fun addFavourite(matchId: Int)
 

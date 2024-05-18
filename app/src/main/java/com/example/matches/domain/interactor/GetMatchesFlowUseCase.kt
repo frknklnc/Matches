@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetMatchesFlowUseCase @Inject constructor(private val matchesRepository: MatchesRepository) :
     BaseFlowUseCase<Unit, Map<String, List<Match>>>() {
     override fun build(params: Unit): Flow<Map<String, List<Match>>> {
-        return matchesRepository.getMatches()
+        return matchesRepository.matchesStream
     }
 }
