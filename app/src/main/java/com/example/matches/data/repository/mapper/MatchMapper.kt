@@ -2,16 +2,16 @@ package com.example.matches.data.repository.mapper
 
 import com.example.matches.data.local.model.FavouriteEntity
 import com.example.matches.data.remote.model.MatchesDto
-import com.example.matches.domain.model.MatchModel
+import com.example.matches.domain.model.Match
 
 class MatchMapper {
 
     fun map(
         matchDto: MatchesDto.MatchDto,
         favouriteList: List<FavouriteEntity>
-    ): MatchModel {
+    ): Match {
         val isFavourite = favouriteList.any { it.matchId == matchDto.matchId }
-        return MatchModel(
+        return Match(
             matchId = matchDto.matchId,
             homeTeamName = matchDto.homeTeamDto.name,
             awayTeamName = matchDto.awayTeamDto.name,

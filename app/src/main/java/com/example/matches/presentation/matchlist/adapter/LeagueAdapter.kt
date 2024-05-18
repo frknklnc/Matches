@@ -1,19 +1,20 @@
-package com.example.matches.presantation.matchlist.adapter
+package com.example.matches.presentation.matchlist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.matches.domain.model.MatchModel
+import com.example.matches.domain.model.Match
 import com.example.matches.databinding.LeagueLayoutBinding
 
 class LeagueAdapter(
-    private var leagues: Map<String, List<MatchModel>>,
-    private val onFavouriteClick: (MatchModel) -> Unit
+    private var leagues: Map<String, List<Match>>,
+    private val onFavouriteClick: (Match) -> Unit,
+    private val onDetailClick: (Match) -> Unit
 ) :
     RecyclerView.Adapter<LeagueAdapter.ItemViewHolder>() {
-    fun updateLeagues(newLeagues: Map<String, List<MatchModel>>) {
+    fun updateLeagues(newLeagues: Map<String, List<Match>>) {
         val diffUtil = ItemDiffUtil(oldItems = leagues, newItems = newLeagues)
         val result = DiffUtil.calculateDiff(diffUtil)
         leagues = newLeagues
@@ -35,11 +36,11 @@ class LeagueAdapter(
 
     inner class ItemViewHolder(private val binding: LeagueLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(league: String, matches: List<MatchModel>) {
+        fun bind(league: String, matches: List<Match>) {
             with(binding) {
                 headerText.text = league
                 flagImage.load(matches.firstOrNull()?.leagueFlag)
-                val adapter = MatchesAdapter(onFavouriteClick)
+                val adapter = MatchesAdapter(onFavouriteClick, onDetailClick)
                 adapter.submitList(matches)
                 matchesList.adapter = adapter
             }
@@ -47,8 +48,8 @@ class LeagueAdapter(
     }
 
     class ItemDiffUtil(
-        val oldItems: Map<String, List<MatchModel>>,
-        val newItems: Map<String, List<MatchModel>>
+        val oldItems: Map<String, List<Match>>,
+        val newItems: Map<String, List<Match>>
     ) : DiffUtil.Callback() {
         override fun getOldListSize(): Int {
             return oldItems.size

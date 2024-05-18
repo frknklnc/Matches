@@ -1,6 +1,7 @@
 package com.example.matches.domain.model
 
-data class MatchModel(
+import java.io.Serializable
+data class Match(
     val matchId: Int,
     val homeTeamName: String,
     val awayTeamName: String,
@@ -12,4 +13,4 @@ data class MatchModel(
     val leagueName: String,
     val leagueFlag: String,
     val isFavourite: Boolean
-)
+) : Serializable

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.safeArgs)
 }
 
 android {
@@ -46,6 +47,8 @@ dependencies {
 
     //Depencency Injection
     implementation(libs.hilt)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     kapt(libs.hilt.compiler)
 
     //Remote
@@ -68,6 +71,10 @@ dependencies {
 
     //SwipeLayout
     implementation(libs.swipe.layout)
+
+    //Navigation
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -5,7 +5,7 @@ import com.example.matches.data.local.FavouriteDao
 import com.example.matches.data.local.model.FavouriteEntity
 import com.example.matches.data.remote.api.MatchesService
 import com.example.matches.data.repository.mapper.MatchMapper
-import com.example.matches.domain.model.MatchModel
+import com.example.matches.domain.model.Match
 import com.example.matches.domain.repository.MatchesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -16,7 +16,7 @@ class MatchesRepositoryImpl @Inject constructor(
 ) : BaseRepository(), MatchesRepository {
 
     private val matchMapper: MatchMapper = MatchMapper()
-    override fun getMatches(): Flow<Map<String, List<MatchModel>>> {
+    override fun getMatches(): Flow<Map<String, List<Match>>> {
         return fetch {
             val favourites = localeService.getMatches()
             val matches = remoteMatchesService.getMatches().data
